@@ -94,7 +94,10 @@ class PR:
         for e in emails_sorted:
             print('> Sent On:', e.date, '\t', e.subject)
 
-        return emails_sorted[0]
+        if len(emails_sorted) > 0:
+            return emails_sorted[0]
+        else:
+            return None
 
 
 def send_email(message: message_email, template_email, force_to_send=False):
@@ -172,7 +175,7 @@ def main(use_args):
 
         if send_email_answer_yes:
             message_red_style('sending email..')
-            # send_email(message=email_message, template_email=template, force_to_send=send_email_directly)
+            send_email(message=email_message, template_email=template, force_to_send=send_email_directly)
         else:
             print('bye...')
 
