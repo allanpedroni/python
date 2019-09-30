@@ -24,6 +24,8 @@ url = 'http://www.python.org/'
 # https://docs.python.org/3.4/library/configparser.html
 
 board = '5a569126de60d26499350252'  # Pull requests/Ole
+key=''
+token=''
 
 data = input('pr number:')
 # data=9999
@@ -61,7 +63,7 @@ answer = input('mudar para finalizado?')
 
 
 def move_pr_trello(trello_card_id, id_list_to_move):
-    trello_update_card_api = f'https://api.trello.com/1/cards/{trello_card_id}?idList={id_list_to_move}&key=20446b93c0049d6cd017f362e61dc9bf&token=25f0ff4bd7ca4ff00987f9d200517b908e8282c0c616bc20ffe9a6d3aad0961e'
+    trello_update_card_api = f'https://api.trello.com/1/cards/{trello_card_id}?idList={id_list_to_move}&key={key}&token={token}'
 
     if answer.lower() == 'y':
         put_request = req.Request(url=trello_update_card_api, data=None, method='PUT')
