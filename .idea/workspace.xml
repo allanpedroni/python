@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e64138ef-e50a-473e-a20b-2161beecd26b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/allan_pedroni.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hello/http/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/hello/http/config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello/http/http_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/hello/http/http_test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
