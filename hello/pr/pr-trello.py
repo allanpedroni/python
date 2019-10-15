@@ -1,14 +1,17 @@
-# https://docs.python.org/3/library/json.html
-# https://docs.python.org/3/library/urllib.request.html#module-urllib.request
+#!/usr/bin/env python
 
-import urllib.request as req
+# TODO: search
+# - https://docs.python.org/3/library/json.html
+# - https://docs.python.org/3/library/urllib.request.html#module-urllib.request
+
+import json
+import os
+import sys
 import urllib.parse as parse
-import sys, json, os
+import urllib.request as req
 from urllib.error import HTTPError
-from trello import TrelloApi
-import subprocess
 
-import yaml
+from colorama import Fore, Back, Style
 
 url = 'http://www.python.org/'
 
@@ -32,7 +35,6 @@ url = 'http://www.python.org/'
 class Board:
 
     def __init__(self, idBoard):
-
         self.idBoard = idBoard
 
     def get_lists(self):
@@ -45,14 +47,14 @@ class TrelloConfig:
     def __init__(self):
 
         try:
-            with open("config.yml", 'r') as ymlfile:
-                cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
+            # with open("config.yml", 'r') as ymlfile:
+            #    cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
 
-            data_config_trello = cfg['trello']
+            # data_config_trello = cfg['trello']
 
-            self.idBoard = data_config_trello['idBoard']  # Pull requests/Ole
-            self.key = data_config_trello['key']
-            self.token = data_config_trello['token']
+            self.idBoard = os.environ.get('TRELLO_BOARD')  # data_config_trello['idBoard']  # Pull requests/Ole
+            self.key = os.environ.get('TRELLO_KEY')  # data_config_trello['key']
+            self.token = os.environ.get('TRELLO_TOKEN')  # data_config_trello['token']
 
         except Exception as ex:
             print("Something went wrong when reading 'config.yml' file.\nError:", ex)
@@ -70,6 +72,24 @@ class ResponseApi:
 
     def __repr__(self):
         return repr((self.json, self.status, self.reason))
+
+
+def message_red_style(text):
+    print('\n' + Back.RED + Fore.LIGHTWHITE_EX +
+          text +
+          Style.RESET_ALL)
+
+
+def message_warning_style(text):
+    print('\n' + Back.LIGHTYELLOW_EX + Fore.BLACK +
+          text +
+          Style.RESET_ALL)
+
+
+def message_green_style(text):
+    print('\n' + Back.LIGHTGREEN_EX + Fore.BLACK +
+          text +
+          Style.RESET_ALL)
 
 
 def get_json_from_api(api_url, method):
@@ -91,16 +111,15 @@ def get_json_from_api(api_url, method):
 
 
 def find_pr_in_trello(data_to_search, key, token, idBoard):
-    # data_to_search = input('pr number:')
-    #data_to_search = '9999'
     trello_api = f'https://api.trello.com/1/search?query={parse.quote(data_to_search)}&idBoards={idBoard}&modelTypes=all&board_fields=name%2CidOrganization&boards_limit=10&card_fields=all&cards_limit=10&cards_page=0&card_board=true&card_list=false&card_members=false&card_stickers=false&card_attachments=false&organization_fields=name%2CdisplayName&organizations_limit=10&member_fields=avatarHash%2CfullName%2Cinitials%2Cusername%2Cconfirmed&members_limit=10&partial=false&key={key}&token={token}'
+
     response = get_json_from_api(trello_api, 'GET')
 
     if response is not None and response.status == 200 and len(response.json['cards']) > 0:
-        print('Good, pr founded in trello board.')
+        message_green_style('Good, pr founded in trello board.')
 
         firstCard = response.json['cards'][0]
-        #print('> first card json', firstCard)
+        # print('> first card json', firstCard)
 
         idCard = firstCard['id']
         idList = firstCard['idList']
@@ -114,12 +133,12 @@ def find_pr_in_trello(data_to_search, key, token, idBoard):
         answer = input('\nIs it your trello\'s card? (Y/N): ')
 
         if answer.lower() == 'n':
-            print('bye, see you again...')
+            message_red_style('bye, see you again...')
             sys.exit()
         move_pr_trello(idCard, key, token, idBoard)
 
     else:
-        print('Sorry, we could not found your PR number in trello, try again.')
+        message_red_style('Sorry, we could not found your PR number in trello, try again.')
         # print('response', response.json)
         # print(response.status)
         # print(response.reason)
@@ -147,7 +166,6 @@ def get_lists_from_board(idBoard):
 
 
 def get_name_of_list_from_card(idList, idBoard):
-
     lists_from_board = get_lists_from_board(idBoard)
 
     for row in lists_from_board:
@@ -170,13 +188,11 @@ def move_pr_trello(trello_card_id, key, token, idBoard):
     id_list_to_move = jsonLists[number_choosed]['id']
     name_list_to_move = jsonLists[number_choosed]['name']
 
-    print('list choosen', id_list_to_move)
-
     trello_update_card_api = f'https://api.trello.com/1/cards/{trello_card_id}?idList={id_list_to_move}&key={key}&token={token}'
 
     response = get_json_from_api(trello_update_card_api, 'PUT')
 
-    print(f'moving card to {name_list_to_move}...')
+    message_warning_style(f'moving card to {name_list_to_move}...')
     # print('stat', response.status)
     # print('json', response.json)
 
@@ -184,13 +200,12 @@ def move_pr_trello(trello_card_id, key, token, idBoard):
 
     trello_add_new_comment = f'https://api.trello.com/1/cards/{trello_card_id}/actions/comments?text={parse.quote(new_post)}&&key={key}&token={token}'
     response = get_json_from_api(trello_add_new_comment, 'POST')
-    print('adding new comment...')
+    message_warning_style('adding new comment...')
     # print('stat', response.status)
     # print('json', response.json)
 
 
 def main(use_args):
-
     pr = 0
 
     # args
@@ -206,22 +221,6 @@ def main(use_args):
     config = TrelloConfig()
     find_pr_in_trello(str(pr), config.key, config.token, config.idBoard)
 
-def testUsingNewApiTrello():
-    # trello = TrelloApi('')
-    # https://pypi.org/project/trello/
-    # https: // pythonhosted.org / trello / examples.html
-    # print(os.environ["TRELLO_KEY"])
-
-    config = TrelloConfig()
-    tre = TrelloApi(config.key, config.token)
-
-    #print('t:',tre.boards.get_card(config.idBoard))
-    print('a:', tre.boards.get_action(config.idBoard))
-    print('x:', tre.boards.get_list(config.idBoard))
-
-
 
 if __name__ == "__main__":
-    #main(use_args=True)
-    testUsingNewApiTrello()
-
+    main(use_args=True)

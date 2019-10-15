@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e64138ef-e50a-473e-a20b-2161beecd26b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/allan_pedroni.xml" afterDir="false" />
+    <list default="true" id="e64138ef-e50a-473e-a20b-2161beecd26b" name="Default Changelist" comment="update http">
+      <change afterPath="$PROJECT_DIR$/hello/http/pr-comments.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hello/http/pr.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hello/pr/pr-reply-email.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hello/pr/pr-trello.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hello/selenium/sele.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hello/sendkeys/send.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello/http/http_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/hello/http/http_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hello/win32com/read_email.py" beforeDir="false" afterPath="$PROJECT_DIR$/hello/win32com/read_email.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,9 +31,14 @@
   <component name="ProjectId" id="1QhIvXlKjVaXJuUERfq9LII0XBJ" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/hello/http" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Allan\tests\python_git\hello\http" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Allan\tests\python\hello\email" />
       <recent name="C:\Allan\tests\python\hello\samples" />
@@ -45,7 +56,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.http_test">
+  <component name="RunManager" selected="Python.pr-reply-email">
     <configuration name="http" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -109,7 +120,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="packages" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="pr-reply-email" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -117,11 +128,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hello" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hello/pr" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hello/packages.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hello/pr/pr-reply-email.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -130,7 +141,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="read_email" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="pr" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -138,11 +149,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hello/win32com" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hello/http" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hello/win32com/read_email.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hello/http/pr.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -152,19 +163,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.read_email" />
-      <item itemvalue="Python.packages" />
       <item itemvalue="Python.http" />
       <item itemvalue="Python.http_test" />
       <item itemvalue="Python.json_test" />
+      <item itemvalue="Python.pr" />
+      <item itemvalue="Python.pr-reply-email" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.pr-reply-email" />
         <item itemvalue="Python.http_test" />
+        <item itemvalue="Python.pr" />
         <item itemvalue="Python.json_test" />
         <item itemvalue="Python.http" />
-        <item itemvalue="Python.read_email" />
-        <item itemvalue="Python.packages" />
       </list>
     </recent_temporary>
   </component>

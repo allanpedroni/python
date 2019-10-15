@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 
+# TODO:
+#  1- if template 1,2,3 -> MOVE to Finished in trello
+#  2- if template 0 -> MOVE to Already reviewed in trello
+
 import sys
 from colorama import Fore, Back, Style
-
 
 class message_email:
     def __init__(self, pr, message):
@@ -84,8 +87,9 @@ class PR:
 
                 if total_emails_found >= 1:
                     emails.append(message_email(pr, item))
-        except:
-            pass
+        except Exception as ex:
+            print('Error:', ex)
+            sys.exit()
 
         emails_sorted = sorted(emails, key=lambda message_email: message_email.date, reverse=True)
 
@@ -185,8 +189,3 @@ def main(use_args):
 if __name__ == "__main__":
     main(use_args=True)
 
-# se template 0 - verificar template
-# mover PR para quadro 'Já revisado e voltou para a mesa'
-# se template 1, 2 ou 3 - aprovado
-# mover PR para Finalizado
-# incluir template para sair do programa
