@@ -9,8 +9,9 @@ import os
 import sys
 import urllib.parse as parse
 import urllib.request as req
-from urllib.error import HTTPError
 from string import Template
+from urllib.error import HTTPError
+
 from colorama import Fore, Back, Style
 
 
@@ -18,22 +19,16 @@ class TrelloConfig:
     def __init__(self):
 
         try:
-            # with open("config.yml", 'r') as ymlfile:
-            #    cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
+            self.idBoard = os.environ.get('TRELLO_BOARD')
+            self.key = os.environ.get('TRELLO_KEY')
+            self.token = os.environ.get('TRELLO_TOKEN')
 
-            # data_config_trello = cfg['trello']
-
-            self.idBoard = os.environ.get('TRELLO_BOARD')  # data_config_trello['idBoard']  # Pull requests/Ole
-            self.key = os.environ.get('TRELLO_KEY')  # data_config_trello['key']
-            self.token = os.environ.get('TRELLO_TOKEN')  # data_config_trello['token']
-
-            assert (self.idBoard is not None) # , "idBoard environment variable is missing."
-            assert (self.key is not None) # , "key environment variable is missing."
-            assert (self.token is not None) # , "token environment variable is missing."
+            assert (self.idBoard is not None), "idBoard environment variable is missing."
+            assert (self.key is not None), "key environment variable is missing."
+            assert (self.token is not None), "token environment variable is missing."
 
         except Exception as ex:
-            print("Something went wrong when reading environment variables. \n"
-                  "Please check TRELLO_BOARD, TRELLO_KEY and TRELLO_TOKEN.\nError:", ex)
+            message_red_style(f"Something went wrong when reading environment variables. Error: {ex}")
             sys.exit()
 
     def __repr__(self):
@@ -149,7 +144,7 @@ class PR:
         message_green_style(f'({len(emails_sorted)}) email found.')
 
         for e in emails_sorted:
-            print('>>>>>>>>>>> Sent On:', e.date, '\t', e.subject, '\n')
+            print('>>>>>>>>>>> Sent On:', e.date, '\t', e.subject)
 
         if len(emails_sorted) > 0:
             return emails_sorted[0]
@@ -179,7 +174,11 @@ def find_pr_in_trello(data_to_search, key, token, idBoard):
 
     response = get_json_from_api(trello_api, 'GET')
 
-    if response is not None and response.status == 200 and len(response.json['cards']) > 0:
+    assert (response is not None), message_red_style('Sorry, we could not found your PR number in trello, try again.')
+    assert (response.status == 200), message_warning_style(
+        'Sorry, there is something wrong with trello api, please try again.')
+
+    if len(response.json['cards']) > 0:
         message_green_style('Good, pr founded in trello board.')
 
         firstCard = response.json['cards'][0]
@@ -200,12 +199,6 @@ def find_pr_in_trello(data_to_search, key, token, idBoard):
             message_red_style('bye, see you again...')
             sys.exit()
         move_pr_trello(idCard, key, token, idBoard)
-
-    else:
-        message_red_style('Sorry, we could not found your PR number in trello, try again.')
-        # print('response', response.json)
-        # print(response.status)
-        # print(response.reason)
 
 
 def get_valid_numeric_option(max):
@@ -247,26 +240,27 @@ def move_pr_trello(trello_card_id, key, token, idBoard):
     for t in range(total):
         print(f"> {t} - {jsonLists[t]['name']} - {jsonLists[t]['id']}")
 
-    number_choosed = get_valid_numeric_option(total)
+    choosedNumber = get_valid_numeric_option(total)
 
-    id_list_to_move = jsonLists[number_choosed]['id']
-    name_list_to_move = jsonLists[number_choosed]['name']
+    id_list_to_move = jsonLists[choosedNumber]['id']
+    name_list_to_move = jsonLists[choosedNumber]['name']
 
     trello_update_card_api = f'https://api.trello.com/1/cards/{trello_card_id}?idList={id_list_to_move}&key={key}&token={token}'
 
     response = get_json_from_api(trello_update_card_api, 'PUT')
 
+    assert (response.status == 200), message_red_style('Something wrong happens when moving card...')
+
     message_warning_style(f'moving card to {name_list_to_move}...')
-    # print('stat', response.status)
-    # print('json', response.json)
 
     new_post = f'AUTOMATICO: Movendo card para {name_list_to_move}'
 
     trello_add_new_comment = f'https://api.trello.com/1/cards/{trello_card_id}/actions/comments?text={parse.quote(new_post)}&&key={key}&token={token}'
     response = get_json_from_api(trello_add_new_comment, 'POST')
+
+    assert (response.status == 200), message_red_style('Something wrong happens when adding a new comment...')
+
     message_warning_style('adding new comment...')
-    # print('stat', response.status)
-    # print('json', response.json)
 
 
 def send_email(message: EmailMessage, template_email, force_to_send=False):
@@ -281,10 +275,10 @@ def send_email(message: EmailMessage, template_email, force_to_send=False):
                         "Att</div>")
 
     answer = template.substitute(
-        firstName = first_name.capitalize(),
-        messageUrl = message.url,
-        messagePr = message.pr,
-        emailMessage = template_email.replace(f'PR {message.pr}', '')
+        firstName=first_name.capitalize(),
+        messageUrl=message.url,
+        messagePr=message.pr,
+        emailMessage=template_email.replace(f'PR {message.pr}', '')
     )
 
     reply = message.message.ReplyAll()
@@ -331,7 +325,7 @@ def moving_pr_trello(pr):
 
 
 def main(use_args):
-    pr = 999999999999999
+    pr = 0
     send_email_directly = False
 
     # args
@@ -384,4 +378,9 @@ def main(use_args):
 
 
 if __name__ == "__main__":
-    main(use_args=False)
+    try:
+        main(use_args=True)
+    except Exception as ex:
+        print('Error:', ex)
+    except:
+        pass
