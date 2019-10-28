@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e64138ef-e50a-473e-a20b-2161beecd26b" name="Default Changelist" comment="update http">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/otc91076.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/otc91076.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hello/ML/pr-reply-email.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hello/pr/setup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hello/json/json_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/hello/json/json_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello/pr/pr-reply-email.py" beforeDir="false" afterPath="$PROJECT_DIR$/hello/pr/pr-reply-email.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello/pr/pr-trello.py" beforeDir="false" afterPath="$PROJECT_DIR$/hello/pr/pr-trello.py" afterDir="false" />
     </list>
@@ -26,17 +28,18 @@
   <component name="ProjectId" id="1QhIvXlKjVaXJuUERfq9LII0XBJ" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/hello/http" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/hello/ML" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Allan\tests\python_git\hello\http" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Allan\tests\python\hello\email" />
       <recent name="C:\Allan\tests\python\hello\samples" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Allan\tests\python_git\hello\ML" />
+      <recent name="C:\Allan\tests\python_git\hello\http" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -51,28 +54,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.pr-reply-email">
-    <configuration name="http" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="python" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hello/http" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Allan\tests\python_git\hello\http\http_test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.pr-reply-email (1)">
     <configuration name="http_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -115,6 +97,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="pr-reply-email (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hello/ML" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hello/ML/pr-reply-email.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="pr-reply-email" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -136,7 +139,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pr" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="pr-trello" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -144,11 +147,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hello/http" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hello/pr" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hello/http/pr.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hello/pr/pr-trello.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -158,19 +161,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.http" />
       <item itemvalue="Python.http_test" />
       <item itemvalue="Python.json_test" />
-      <item itemvalue="Python.pr" />
       <item itemvalue="Python.pr-reply-email" />
+      <item itemvalue="Python.pr-trello" />
+      <item itemvalue="Python.pr-reply-email (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.pr-reply-email (1)" />
+        <item itemvalue="Python.json_test" />
+        <item itemvalue="Python.pr-trello" />
         <item itemvalue="Python.pr-reply-email" />
         <item itemvalue="Python.http_test" />
-        <item itemvalue="Python.pr" />
-        <item itemvalue="Python.json_test" />
-        <item itemvalue="Python.http" />
       </list>
     </recent_temporary>
   </component>
